@@ -4,6 +4,7 @@ import com.goorm.okim.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -22,19 +23,8 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-
-
-        return new UserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-                boolean exists = userRepository.existsByEmail(email);
-
-                return userRepository.findByEmail(email)
-                        .orElseThrow(() -> new UsernameNotFoundException("Use not Found"));
-
-            }
-        };
+        return email -> userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Use not Found"));
     }
 
     @Bean
