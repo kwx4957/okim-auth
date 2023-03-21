@@ -8,4 +8,7 @@ CREATE TABLE IF NOT EXISTS _user
 );
 
 INSERT INTO _user (email, password, role, withdrawl)
-VALUES ('admin@example.com', '$2a$10$OCu5kEROY5jut74myGqN/O56uTTZujMG6GxEj3keIzNHwPdunNaWu', 'USER', false);
+VALUES ('a@example.com', '$2a$10$OCu5kEROY5jut74myGqN/O56uTTZujMG6GxEj3keIzNHwPdunNaWu', 'USER', false);
+
+INSERT INTO _user (email, password, role, withdrawl)
+VALUES ('b@example.com', '$2a$10$OCu5kEROY5jut74myGqN/O56uTTZujMG6GxEj3keIzNHwPdunNaWu', 'USER', true);

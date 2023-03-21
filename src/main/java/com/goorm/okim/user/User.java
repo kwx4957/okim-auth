@@ -1,6 +1,5 @@
 package com.goorm.okim.user;
 
-import com.goorm.okim.auth.data.request.RegisterRequest;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,14 +27,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    public static User from(RegisterRequest registerRequest, PasswordEncoder passwordEncoder) {
-        User user = new User();
-        user.email = registerRequest.getEmail();
-        user.password = passwordEncoder.encode(registerRequest.getPassword());
-        user.role = Role.USER;
-        return user;
     }
 
     @Override
