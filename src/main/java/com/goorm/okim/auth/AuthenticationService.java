@@ -34,6 +34,6 @@ public class AuthenticationService {
         // create jwt from user
         String accessToken = jwtService.generateAccessToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
-        return AuthenticationResponse.create(accessToken, refreshToken);
+        return AuthenticationResponse.of(accessToken, refreshToken);
     }
 }
