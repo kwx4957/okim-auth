@@ -1,4 +1,4 @@
-package com.goorm.okim.auth;
+package com.goorm.okim.auth.data.response;
 
 import lombok.Data;
 

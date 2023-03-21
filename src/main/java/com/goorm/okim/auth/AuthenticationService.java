@@ -1,5 +1,7 @@
 package com.goorm.okim.auth;
 
+import com.goorm.okim.auth.data.request.AuthenticationRequest;
+import com.goorm.okim.auth.data.response.AuthenticationResponse;
 import com.goorm.okim.config.JwtService;
 import com.goorm.okim.user.User;
 import com.goorm.okim.user.UserRepository;

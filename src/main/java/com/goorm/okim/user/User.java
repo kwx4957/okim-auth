@@ -1,6 +1,6 @@
 package com.goorm.okim.user;
 
-import com.goorm.okim.auth.RegisterRequest;
+import com.goorm.okim.auth.data.request.RegisterRequest;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

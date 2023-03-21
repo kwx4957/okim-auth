@@ -1,5 +1,6 @@
 package com.goorm.okim.config;
 
+import com.goorm.okim.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,6 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeHttpRequests()
                     .requestMatchers("/api/v1/auth/**").permitAll()
-                    .requestMatchers("/demo").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

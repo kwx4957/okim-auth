@@ -1,5 +1,6 @@
 package com.goorm.okim.auth;
 
+import com.goorm.okim.auth.data.request.AuthenticationRequest;
 import com.goorm.okim.common.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

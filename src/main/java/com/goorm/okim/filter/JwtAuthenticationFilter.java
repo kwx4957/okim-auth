@@ -1,5 +1,6 @@
-package com.goorm.okim.config;
+package com.goorm.okim.filter;
 
+import com.goorm.okim.config.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
