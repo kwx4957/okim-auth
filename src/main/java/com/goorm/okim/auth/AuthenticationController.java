@@ -2,6 +2,7 @@ package com.goorm.okim.auth;
 
 import com.goorm.okim.auth.data.request.AuthenticationRequest;
 import com.goorm.okim.common.Response;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(
-            @RequestBody AuthenticationRequest authRequest
+            @Valid @RequestBody AuthenticationRequest authRequest
     ) {
         return Response.ok(authenticationService.authenticate(authRequest));
     }

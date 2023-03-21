@@ -1,4 +1,6 @@
 spring:
+  messages:
+    basename: message
   h2:
     console: true
   datasource:

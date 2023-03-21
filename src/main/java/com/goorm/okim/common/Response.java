@@ -50,4 +50,11 @@ public class Response {
         response.code = errorCode;
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
+
+    public static ResponseEntity<Object> toFailObject(String message) {
+        Response body = new Response();
+        body.code = -1;
+        body.message = message;
+        return ResponseEntity.badRequest().body(body);
+    }
 }

@@ -2,11 +2,17 @@ package com.goorm.okim.exception;
 
 import com.goorm.okim.common.Response;
 import com.goorm.okim.exception.auth.EmailNotFoundException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import static com.goorm.okim.exception.ErrorCodeMessage.AUTH_DISABLED;
@@ -29,5 +35,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             case "DisabledException" -> Response.unAuthorize(AUTH_DISABLED.getCode(), AUTH_DISABLED.getMessage());
             default -> Response.unAuthorize(AUTH_WRONG_PASSWORD.getCode(), AUTH_WRONG_PASSWORD.getMessage());
         };
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        String message = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
+        return Response.toFailObject(message);
     }
 }
