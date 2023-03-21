@@ -1,8 +1,9 @@
 package com.goorm.okim.auth;
 
 import com.goorm.okim.common.Response;
+import com.goorm.okim.exception.BusinessLogicException;
+import com.goorm.okim.exception.ErrorCodeMessage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,6 @@ public class AuthenticationController {
     public ResponseEntity<?> authenticate(
             @RequestBody AuthenticationRequest authRequest
     ) {
-        return ResponseEntity.ok(Response.ok(authenticationService.authenticate(authRequest)));
+        return Response.ok(authenticationService.authenticate(authRequest));
     }
 }

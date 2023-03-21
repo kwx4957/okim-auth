@@ -28,8 +28,10 @@ public class AuthenticationService {
                 )
         );
 
-        // create jwt from user
+        // find user
         User user = userRepository.findByEmail(authRequest.getEmail()).orElseThrow();
+
+        // create jwt from user
         String accessToken = jwtService.generateAccessToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
         return AuthenticationResponse.create(accessToken, refreshToken);
