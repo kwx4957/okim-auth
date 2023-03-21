@@ -1,8 +1,6 @@
 package com.goorm.okim.auth;
 
 import com.goorm.okim.common.Response;
-import com.goorm.okim.exception.BusinessLogicException;
-import com.goorm.okim.exception.ErrorCodeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
