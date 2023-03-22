@@ -24,6 +24,10 @@ public class User implements UserDetails {
     private Role role;
     private boolean withdrawl;
 
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
