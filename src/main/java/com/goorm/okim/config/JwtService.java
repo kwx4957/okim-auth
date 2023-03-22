@@ -1,5 +1,6 @@
 package com.goorm.okim.config;
 
+import com.goorm.okim.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -9,7 +10,6 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -30,12 +30,20 @@ public class JwtService {
     }
 
 
-    public String generateAccessToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails, JwtType.ACCESS);
+    public String generateAccessToken(User user) {
+        HashMap<String, Object> hashMap = createClaims(user);
+        return generateToken(hashMap, user, JwtType.ACCESS);
     }
 
-    public String generateRefreshToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails, JwtType.REFRESH);
+    public String generateRefreshToken(User user) {
+        HashMap<String, Object> hashMap = createClaims(user);
+        return generateToken(hashMap, user, JwtType.REFRESH);
+    }
+
+    private HashMap<String, Object> createClaims(User user) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("uid", user.getId());
+        return hashMap;
     }
 
     public String extractUserName(String token) {
@@ -60,10 +68,10 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(Map<String, Object> extractClaims, UserDetails userDetails, JwtType jwtType) {
+    public String generateToken(Map<String, Object> extractClaims, User user, JwtType jwtType) {
         JwtBuilder jwtBuilder = Jwts.builder()
                 .setClaims(extractClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256);
 
