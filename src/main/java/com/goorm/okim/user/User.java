@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "_user")
+@Table(name = "user")
 public class User implements UserDetails {
 
     @Id
@@ -20,8 +20,8 @@ public class User implements UserDetails {
     private Long id;
     private String email;
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+
+    @Column(name = "is_withdrawl")
     private boolean withdrawl;
 
     public Long getId() {
@@ -30,7 +30,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return null;
     }
 
     @Override

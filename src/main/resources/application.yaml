@@ -1,13 +1,20 @@
+server:
+  port: 8082
+
 spring:
   messages:
     basename: message
-  h2:
-    console: true
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: "jdbc:mysql://dev-database.cwfjsyuf7mwr.ap-northeast-2.rds.amazonaws.com:3306/fivekim"
+    username: admin
+    password: admin123
+    jpa:
+      hibernate:
+        ddl-auto: 'none'
+      show-sql: true
+      properties:
+        format_sql: true
+        use_sql_comments: true
   jpa:
     hibernate:
       ddl-auto: 'none'
