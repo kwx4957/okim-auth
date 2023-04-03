@@ -30,6 +30,6 @@ public class AuthenticationService {
         User user = (User) authentication.getPrincipal();
         String accessToken = jwtService.generateAccessToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
-        return AuthenticationResponse.of(accessToken, refreshToken);
+        return AuthenticationResponse.of(accessToken, refreshToken, user.getId());
     }
 }
