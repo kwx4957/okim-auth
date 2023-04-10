@@ -78,7 +78,7 @@ public class JwtService {
         if (jwtType == JwtType.ACCESS) {
             jwtBuilder.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 30 * 30));           // 하루
         }else{
-            jwtBuilder.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 30 * 30));      // 한달
+            jwtBuilder.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 30 * 30));           // 한달
         }
         return jwtBuilder.compact();
     }

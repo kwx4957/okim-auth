@@ -26,6 +26,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeHttpRequests()
                     .requestMatchers("/api/v1/auth/**").permitAll()
+                    .requestMatchers("/actuator/health").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
