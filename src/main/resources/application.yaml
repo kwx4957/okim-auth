@@ -5,7 +5,7 @@ spring:
   messages:
     basename: message
   datasource:
-    url: "jdbc:mysql://dev-database.cwfjsyuf7mwr.ap-northeast-2.rds.amazonaws.com:3306/fivekim"
+    url: "jdbc:mysql://replica-public-dev-db.cwfjsyuf7mwr.ap-northeast-2.rds.amazonaws.com:3306/fivekim"
     username: admin
     password: admin123
     jpa:
