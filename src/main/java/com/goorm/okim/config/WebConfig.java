@@ -24,7 +24,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         frontHttp,
                         frontHttps,
-                        HTTP_LOCALHOST_8080
+                        HTTP_LOCALHOST_8080,
+                        "https://www.oh-kim.com"
                 )
                 .allowedMethods("*")
                 .allowCredentials(true);
