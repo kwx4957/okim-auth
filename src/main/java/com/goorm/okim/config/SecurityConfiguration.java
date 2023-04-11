@@ -1,5 +1,6 @@
 package com.goorm.okim.config;
 
+import com.goorm.okim.filter.GlobalRequestFilter;
 import com.goorm.okim.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
+    private final GlobalRequestFilter globalRequestFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
@@ -24,6 +26,7 @@ public class SecurityConfiguration {
         http
                 .cors().disable()
                 .csrf().disable()
+                .addFilterBefore(globalRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests()
                     .requestMatchers("/api/v1/auth/**").permitAll()
                     .requestMatchers("/actuator/health").permitAll()
